@@ -7,7 +7,7 @@ CREATE TABLE Staff (
     salary DECIMAL(10, 2),
     yearsWorked INT,
     email VARCHAR(100),
-    phoneNumber INT,
+    phoneNumber BIGINT,
     streetNo INT,
     streetName VARCHAR(100),
     city VARCHAR(50),
