@@ -107,3 +107,10 @@ CREATE TABLE RecipeDetails (
     FOREIGN KEY (item) REFERENCES MenuItem(itemName),
     FOREIGN KEY (ingredient) REFERENCES Inventory(itemName)
 );
+
+-- InventorySeasonal subclass of Inventory
+CREATE TABLE InventorySeasonal (
+    itemName VARCHAR(10) UNIQUE NOT NULL PRIMARY KEY,
+    season VARCHAR(50),
+    FOREIGN KEY (itemName) REFERENCES Inventory (itemName)
+);
