@@ -21,7 +21,7 @@ CREATE TABLE Customer (
    customerID INT UNIQUE NOT NULL PRIMARY KEY,
    firstName VARCHAR(50),
    lastName VARCHAR(50),
-   phoneNumber INT,
+   phoneNumber BIGINT,
    email VARCHAR(100)
 );
  
