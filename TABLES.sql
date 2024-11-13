@@ -110,7 +110,7 @@ CREATE TABLE RecipeDetails (
 
 -- InventorySeasonal subclass of Inventory
 CREATE TABLE InventorySeasonal (
-    itemName VARCHAR(10) UNIQUE NOT NULL PRIMARY KEY,
+    itemName VARCHAR(255) UNIQUE NOT NULL PRIMARY KEY,
     season VARCHAR(50),
-    FOREIGN KEY (itemName) REFERENCES Inventory (itemName)
+    FOREIGN KEY (itemName) REFERENCES Inventory(itemName)
 );
