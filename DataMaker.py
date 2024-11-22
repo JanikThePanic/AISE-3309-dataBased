@@ -55,16 +55,65 @@ customers = [{
     "email": fake.email()
 } for i in range(1, NUM_CUSTOMERS + 1)]
 
-# MenuItem table
-menu_items = [{
-    "itemName": f"Item_{i}",
-    "category": fake.random_element(elements=('Food', 'Drink', 'Dessert')),
-    "alcoholic": random.choice([True, False]),
+# MenuItem table with # Predefined lists for realistic item names based on category
+FOOD_ITEMS = [
+    "Margherita Pizza", "Cheeseburger", "Caesar Salad", "Spaghetti Carbonara",
+    "Grilled Salmon", "Chicken Alfredo", "Beef Tacos", "Vegan Buddha Bowl",
+    "Sushi Platter", "BBQ Ribs",
+    "Pulled Pork Sandwich", "Pad Thai", "Eggplant Parmesan", "Stuffed Bell Peppers",
+    "Shrimp Scampi", "Veggie Burger", "Chicken Parmesan", "Lamb Gyro",
+    "Pho Noodle Soup", "Ramen Bowl", "Greek Salad", "Avocado Toast",
+    "Fish and Chips", "Steak Frites", "Caprese Salad", "Clam Chowder",
+    "Fried Chicken", "Falafel Wrap", "Chili Con Carne", "Miso Soup",
+    "Pasta Primavera", "Shakshuka", "Beef Wellington", "Seafood Paella",
+    "Vegetable Stir Fry", "Roast Duck", "Pork Schnitzel", "Curry Chicken",
+    "Stuffed Cabbage Rolls", "Shepherd's Pie"
+]
+
+
+DRINK_ITEMS = [
+    "Coca-Cola", "Orange Juice", "Mojito", "Espresso", "Green Tea",
+    "Lemonade", "Margarita", "Latte", "Smoothie", "Iced Coffee",
+    "Americano", "Matcha Latte", "Bloody Mary", "Piña Colada", "Hot Chocolate",
+    "Milkshake", "Chai Tea", "Cold Brew", "Gin and Tonic", "Whiskey Sour",
+    "Rum Punch", "Sangria", "Peach Iced Tea", "Sparkling Water", "Arnold Palmer",
+    "Strawberry Lemonade", "Berry Smoothie", "Black Coffee", "Caramel Macchiato",
+    "Pineapple Juice", "Tonic Water", "Energy Drink", "Coconut Water",
+    "Hot Apple Cider", "Herbal Tea", "Craft Beer", "Red Wine", "White Wine",
+    "Vodka Martini", "Mint Julep", "Berry Iced Tea"
+]
+
+
+DESSERT_ITEMS = [
+    "Chocolate Cake", "Apple Pie", "Cheesecake", "Tiramisu", "Ice Cream Sundae",
+    "Brownies", "Creme Brulee", "Pavlova", "Churros", "Panna Cotta",
+    "Macarons", "Lemon Tart", "Carrot Cake", "Banoffee Pie", "Baklava",
+    "Peach Cobbler", "Chocolate Mousse", "Rice Pudding", "Black Forest Cake",
+    "Cupcakes", "Sticky Toffee Pudding", "Eclairs", "Profiteroles", "Fruit Tart",
+    "Cannoli", "Red Velvet Cake", "Coconut Macaroons", "Almond Biscotti",
+    "Pumpkin Pie", "Key Lime Pie", "Doughnuts", "Strawberry Shortcake",
+    "Chocolate Fondue", "Soufflé", "Mango Sorbet", "Turtle Cheesecake",
+    "Raspberry Coulis", "Lava Cake", "Honey Cake", "Angel Food Cake"
+]
+
+
+# Update MenuItem table generation
+menu_items = [({
+    "itemName": random.choice(
+        FOOD_ITEMS if category == 'Food' else
+        DRINK_ITEMS if category == 'Drink' else
+        DESSERT_ITEMS
+    ),
+    "category": category,
+    "alcoholic": category == 'Drink' and random.choice([True, False]),
     "calories": random.randint(100, 1500),
     "price": round(random.uniform(5, 30), 2),
     "revenue": round(random.uniform(100, 1000), 2),
     "orderOccurances": random.randint(1, 50)
-} for i in range(1, NUM_MENU_ITEMS + 1)]
+}) for i, category in enumerate(
+    [fake.random_element(elements=('Food', 'Drink', 'Dessert')) for _ in range(NUM_MENU_ITEMS)]
+)]
+
 
 # MenuItemDetails table
 menu_item_details = [{
