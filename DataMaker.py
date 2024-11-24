@@ -6,18 +6,18 @@ import datetime
 fake = Faker()
 
 # Define data sizes
-NUM_STAFF = 10
-NUM_CUSTOMERS = 10
-NUM_MENU_ITEMS = 10
-NUM_TABLES = 10
-NUM_ORDERS = 10
-NUM_ORDER_DETAILS = 10
-NUM_INVENTORY_ITEMS = 10
-NUM_RECIPE_DETAILS = 10
-NUM_SEASONAL_ITEMS = 10
-NUM_RESERVATIONS = 10
-NUM_RESERVATION_REQUESTS = 20
-NUM_REVIEWS = 10
+NUM_STAFF = 100
+NUM_CUSTOMERS = 100
+NUM_MENU_ITEMS = 100
+NUM_TABLES = 100
+NUM_ORDERS = 100
+NUM_ORDER_DETAILS = 100
+NUM_INVENTORY_ITEMS = 100
+NUM_RECIPE_DETAILS = 100
+NUM_SEASONAL_ITEMS = 100
+NUM_RESERVATIONS = 100
+NUM_RESERVATION_REQUESTS = 100
+NUM_REVIEWS = 100
 
 # Simulate a starting point for staffID to ensure uniqueness across multiple runs
 START_STAFF_ID = 1
@@ -59,7 +59,7 @@ customers = [{
 
 # MenuItem table
 menu_items = [{
-    "itemName": fake.word()[:30],
+    "itemName": f"Menu_Item_{i}",  # Ensures unique itemName
     "category": random.choice(['Food', 'Drink', 'Dessert']),
     "alcoholic": random.choice([True, False]),
     "calories": random.randint(100, 1500),
@@ -67,6 +67,7 @@ menu_items = [{
     "revenue": round(random.uniform(100, 1000), 2),
     "orderOccurances": random.randint(1, 50)
 } for i in range(NUM_MENU_ITEMS)]
+
 
 # MenuItemDetails table
 menu_item_details = [{
